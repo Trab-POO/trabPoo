@@ -24,4 +24,19 @@ public class Convenio {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Convenio convenio = (Convenio) o;
+
+        return nome != null ? nome.equals(convenio.nome) : convenio.nome == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return nome != null ? nome.hashCode() : 0;
+    }
 }
