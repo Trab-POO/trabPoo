@@ -1,11 +1,14 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
-public class Paciente extends Pessoa {
-    private ArrayList<Consulta> consultas = new ArrayList<>();
+import java.util.Date;
+public class Paciente extends Pessoa implements Serializable{
+    private ArrayList<Consulta> consultas;
 
     // Construtor
-    public Paciente(String nome, String cpf, int idade) {
-        super(nome, cpf, idade);
+    public Paciente(String nome, String cpf, String endereco, int nro, String bairro, Date dtNascimento, String s) {
+        super(nome, cpf, endereco, nro, bairro, dtNascimento, s);
+        consultas = new ArrayList<>();
     }
 
     // Métodos específicos de Paciente

@@ -34,4 +34,19 @@ public class DadosPessoa extends Dados{
     public ArrayList<Pessoa> getPessoas(){
         return this.pessoas;
     }
+
+    //métodos
+    public boolean addPessoa(Pessoa p){
+        this.pessoas.add(p);
+        return true;
+    }
+    
+    public boolean salvar(){
+        try{
+            super.gravarDados(this.pessoas, "Pessoas.bin");
+            return true;
+        } catch(Exception e){
+            return false;
+        }
+    }
 }

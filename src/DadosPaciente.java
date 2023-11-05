@@ -34,4 +34,34 @@ public class DadosPaciente extends Dados{
     public ArrayList<Paciente> getPacientes(){
         return this.pacientes;
     }
+
+    //métodos
+    public boolean remover(String CPF) {
+        Iterator<Paciente> auxVet = pacientes.iterator();
+
+        int aux = 0;
+		while(auxVet.hasNext()) {
+			if(CPF.equals(auxVet.next().getCpf())) {
+				this.pacientes.remove(aux);
+				return true;
+			}
+            aux++;
+		}
+		return false;
+	}
+
+    //métodos
+    public boolean addPaciente(Paciente p){
+        this.pacientes.add(p);
+        return true;
+    }
+
+    public boolean salvar(){
+        try{
+            super.gravarDados(this.pacientes, "Pacientes.bin");
+            return true;
+        } catch(Exception e){
+            return false;
+        }
+    }
 }

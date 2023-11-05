@@ -1,22 +1,23 @@
+import java.io.Serializable;
 import java.util.*;
-public class Pessoa {
+public class Pessoa implements Serializable{
     private String nome;
     private String cpf;
-    private int idade;
     private String endereco;
     private int nro;
     private String bairro;
     private Date dt_nascimento;
+    private String senha;
 
     // Construtor
-    public Pessoa(String nome, String cpf, int idade, String endereco, int nro, String bairro, Date dt_nascimento) {
+    public Pessoa(String nome, String cpf, String endereco, int nro, String bairro, Date dt_nascimento, String s) {
         this.nome = nome;
         this.cpf = cpf;
-        this.idade = idade;
         this.endereco = endereco;
         this.nro = nro;
         this.bairro = bairro;
         this.dt_nascimento = dt_nascimento;
+        this.senha = s;
     }
 
     // Getters e Setters
@@ -34,14 +35,6 @@ public class Pessoa {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
     }
 
     public String getEndereco() {
@@ -74,5 +67,18 @@ public class Pessoa {
 
     public void setDt_nascimento(Date dt_nascimento) {
         this.dt_nascimento = dt_nascimento;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    //métodos
+    public boolean verificaAcesso(String n, String s){
+        return (n == getNome() && s == getSenha());
     }
 }

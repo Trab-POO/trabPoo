@@ -3,7 +3,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public abstract class  Dados {
+public abstract class Dados {
 	public static boolean gravarDados(Object a, String arq ){
 		try {
 			//Cria arquivo para inserir
