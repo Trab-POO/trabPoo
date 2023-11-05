@@ -51,7 +51,8 @@ public class DadosPaciente extends Dados{
 	}
 
     public boolean addPaciente(Paciente p){
-        this.pacientes.add(p);
+        if(!verificaPaciente(p))
+            this.pacientes.add(p);
         return true;
     }
 
@@ -62,5 +63,16 @@ public class DadosPaciente extends Dados{
         } catch(Exception e){
             return false;
         }
+    }
+
+    public boolean verificaPaciente(Paciente r){
+        Iterator<Paciente> aux = this.pacientes.iterator();
+
+        while(aux.hasNext()){
+            if(aux.next() == r){
+                return true;
+            }
+        }
+        return false;
     }
 }

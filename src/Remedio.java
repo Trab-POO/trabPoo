@@ -1,11 +1,11 @@
-public class Remedio {
+import java.io.Serializable;
+
+public class Remedio implements Serializable{
     private String nome;
-    private String dosagem;
 
     // Construtor
-    public Remedio(String nome, String dosagem) {
+    public Remedio(String nome) {
         this.nome = nome;
-        this.dosagem = dosagem;
     }
 
     // Getters e Setters
@@ -15,13 +15,5 @@ public class Remedio {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getDosagem() {
-        return dosagem;
-    }
-
-    public void setDosagem(String dosagem) {
-        this.dosagem = dosagem;
     }
 }

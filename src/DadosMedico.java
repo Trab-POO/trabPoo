@@ -37,7 +37,8 @@ public class DadosMedico extends Dados{
 
     //métodos
     public boolean addMedico(Medico p){
-        this.medicos.add(p);
+        if(!verificaMedico(p))
+            this.medicos.add(p);
         return true;
     }
     
@@ -63,4 +64,15 @@ public class DadosMedico extends Dados{
 		}
 		return false;
 	}
+
+    public boolean verificaMedico(Medico r){
+        Iterator<Medico> aux = this.medicos.iterator();
+
+        while(aux.hasNext()){
+            if(aux.next() == r){
+                return true;
+            }
+        }
+        return false;
+    }
 }
