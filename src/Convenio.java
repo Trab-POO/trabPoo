@@ -1,4 +1,6 @@
-public class Convenio {
+import java.io.Serializable;
+
+public class Convenio implements Serializable{
     private String nome;
     private String descricao;
 

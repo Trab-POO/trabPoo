@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 import javax.swing.border.EmptyBorder;
 
 /**
@@ -64,58 +66,64 @@ public class Tela_Cadastro_Paciente extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+        JLabel titulo = new JLabel("Cadastro Paciente");
+		titulo.setFont(new Font("Arial", Font.BOLD, 18));
+		titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		titulo.setBounds(6, 6, 486, 22);
+		contentPane.add(titulo);
 		
 		JLabel lblNewLabel = new JLabel("Nome");
-		lblNewLabel.setBounds(12, 12, 70, 15);
+		lblNewLabel.setBounds(12, 42, 70, 15);
 		contentPane.add(lblNewLabel);
 		
 		txt_nome = new JTextField();
-		txt_nome.setBounds(221, 10, 245, 19);
+		txt_nome.setBounds(221, 40, 245, 19);
 		contentPane.add(txt_nome);
 		txt_nome.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("CPF");
-		lblNewLabel_1.setBounds(12, 39, 70, 15);
+		lblNewLabel_1.setBounds(12, 69, 70, 15);
 		contentPane.add(lblNewLabel_1);
 		
 		txt_cpf = new JTextField();
-		txt_cpf.setBounds(221, 37, 245, 19);
+		txt_cpf.setBounds(221, 67, 245, 19);
 		contentPane.add(txt_cpf);
 		txt_cpf.setColumns(10);
 		
 		JLabel dataDeNascimento = new JLabel("Data de Nascimento");
-		dataDeNascimento.setBounds(12, 66, 191, 15);
+		dataDeNascimento.setBounds(12, 96, 191, 15);
 		contentPane.add(dataDeNascimento);
 		
 		txt_dataNascimento = new JTextField();
-		txt_dataNascimento.setBounds(221, 64, 245, 19);
+		txt_dataNascimento.setBounds(221, 94, 245, 19);
 		contentPane.add(txt_dataNascimento);
 		txt_dataNascimento.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Logradouro");
-		lblNewLabel_5.setBounds(12, 93, 102, 15);
+		lblNewLabel_5.setBounds(12, 123, 102, 15);
 		contentPane.add(lblNewLabel_5);
 		
 		txt_logradouro = new JTextField();
-		txt_logradouro.setBounds(221, 91, 245, 19);
+		txt_logradouro.setBounds(221, 121, 245, 19);
 		contentPane.add(txt_logradouro);
 		txt_logradouro.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("Número");
-		lblNewLabel_6.setBounds(12, 120, 70, 15);
+		lblNewLabel_6.setBounds(12, 150, 70, 15);
 		contentPane.add(lblNewLabel_6);
 		
 		txt_numero = new JTextField();
-		txt_numero.setBounds(221, 118, 245, 19);
+		txt_numero.setBounds(221, 148, 245, 19);
 		contentPane.add(txt_numero);
 		txt_numero.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("Bairro");
-		lblNewLabel_7.setBounds(12, 147, 70, 15);
+		lblNewLabel_7.setBounds(12, 177, 70, 15);
 		contentPane.add(lblNewLabel_7);
 		
 		txt_bairro = new JTextField();
-		txt_bairro.setBounds(221, 145, 245, 19);
+		txt_bairro.setBounds(221, 175, 245, 19);
 		contentPane.add(txt_bairro);
 		txt_bairro.setColumns(10);
 		
@@ -192,7 +200,7 @@ public class Tela_Cadastro_Paciente extends JFrame {
 	}
 	
 	public boolean salvar(Paciente p, Pessoa pe) {
-		//Salvando em arquivo		
+		//Salvando em arquivo
 		DadosPaciente dadosPaciente = new DadosPaciente();
 		DadosPessoa dadosPessoa = new DadosPessoa();
 

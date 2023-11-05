@@ -1,7 +1,8 @@
 import java.util.Map;
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Agenda {
+public class Agenda implements Serializable{
     private Map<String, Boolean> horariosDisponiveis = new HashMap<>();
 
     // Método para adicionar horários disponíveis

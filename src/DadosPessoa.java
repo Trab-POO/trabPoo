@@ -37,10 +37,11 @@ public class DadosPessoa extends Dados{
 
     //métodos
     public boolean addPessoa(Pessoa p){
-        this.pessoas.add(p);
+        if(!verificaPessoa(p))
+            this.pessoas.add(p);
         return true;
     }
-    
+
     public boolean salvar(){
         try{
             super.gravarDados(this.pessoas, "Pessoas.bin");
@@ -48,5 +49,16 @@ public class DadosPessoa extends Dados{
         } catch(Exception e){
             return false;
         }
+    }
+
+    public boolean verificaPessoa(Pessoa p){
+        Iterator<Pessoa> auxPes = this.pessoas.iterator();
+
+        while(auxPes.hasNext()){
+            if(auxPes.next() == p){
+                return true;
+            }
+        }
+        return false;
     }
 }

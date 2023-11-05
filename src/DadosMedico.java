@@ -34,4 +34,33 @@ public class DadosMedico extends Dados{
     public ArrayList<Medico> getMedicos(){
         return this.medicos;
     }
+
+    //métodos
+    public boolean addMedico(Medico p){
+        this.medicos.add(p);
+        return true;
+    }
+    
+    public boolean salvar(){
+        try{
+            super.gravarDados(this.medicos, "Medicos.bin");
+            return true;
+        } catch(Exception e){
+            return false;
+        }
+    }
+
+    public boolean remover(String CPF) {
+        Iterator<Medico> auxVet = medicos.iterator();
+
+        int aux = 0;
+		while(auxVet.hasNext()) {
+			if(CPF.equals(auxVet.next().getCpf())) {
+				this.medicos.remove(aux);
+				return true;
+			}
+            aux++;
+		}
+		return false;
+	}
 }

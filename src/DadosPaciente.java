@@ -50,7 +50,6 @@ public class DadosPaciente extends Dados{
 		return false;
 	}
 
-    //métodos
     public boolean addPaciente(Paciente p){
         this.pacientes.add(p);
         return true;

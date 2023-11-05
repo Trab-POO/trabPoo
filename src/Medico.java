@@ -2,16 +2,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
-public class Medico extends Pessoa {
+public class Medico extends Pessoa{
     private String especialidade;
-    private ArrayList<Convenio> convenios = new ArrayList<>();
-    private ArrayList<Consulta> consultas = new ArrayList<>();
-    private Agenda agenda = new Agenda();
-
+    private ArrayList<Convenio> convenios;
+    private ArrayList<Consulta> consultas;
+    private Agenda agenda;
+    
     // Construtor
-    public Medico(String nome, String cpf, int idade, String endereco, int nro, String bairro, Date dt_nascimento, String especialidade) {
-        super(nome, cpf, idade, endereco,nro,bairro,dt_nascimento);
+    public Medico(String nome, String cpf, String endereco, int nro, String bairro, Date dtNascimento, String s,  String especialidade) {
+        super(nome, cpf, endereco, nro, bairro, dtNascimento, s);
         this.especialidade = especialidade;
+        convenios = new ArrayList<>();
+        consultas = new ArrayList<>();
+        agenda = new Agenda();
     }
 
     public Agenda getAgenda() {
@@ -70,4 +73,5 @@ public class Medico extends Pessoa {
     public void setAgenda(Agenda agenda) {
         this.agenda = agenda;
     }
+    
 }
