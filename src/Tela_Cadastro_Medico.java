@@ -14,13 +14,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
+import javax.swing.JCheckBox;
+import java.util.List;
+import java.util.ArrayList;
 
-/**
- * Classe: Tela_Cadastro_Medico
- * 
- * DESC: Essa classe recebe os dados da classe PacientesemPlano e salva-os num arquivo Pacientes.bin.
- * 		
- * */
 public class Tela_Cadastro_Medico extends JFrame {
 
 	private JPanel contentPane;
@@ -39,6 +36,8 @@ public class Tela_Cadastro_Medico extends JFrame {
 	private JTextField txt_logradouro;
 	private JTextField txt_numero;
 	private JTextField txt_bairro;
+	private List<Convenio> conveniosDisponiveis;
+	private List<JCheckBox> checkboxesConvenios;
 
 	/**
 	 * Launch the application.
@@ -136,7 +135,25 @@ public class Tela_Cadastro_Medico extends JFrame {
 		txt_bairro.setBounds(221, 202, 245, 19);
 		contentPane.add(txt_bairro);
 		txt_bairro.setColumns(10);
-		
+		checkboxesConvenios = new ArrayList<>();
+
+		// Adicione os JCheckBoxes representando os convênios
+		checkboxesConvenios = new ArrayList<>();
+		List<Convenio> conveniosDisponiveis = LeituraArquivoConvenios.obterConveniosDisponiveis(); // Obtendo a lista de convênios
+		JLabel lblConvenios = new JLabel("Convênios Participantes");
+		lblConvenios.setBounds(10, 230, 150, 15);
+		contentPane.add(lblConvenios);
+
+		int yPos = 230;
+
+		for (Convenio convenio : conveniosDisponiveis) {
+			JCheckBox checkBox = new JCheckBox(convenio.getNome());
+			checkBox.setBounds(221, yPos, 150, 15);
+			contentPane.add(checkBox);
+			checkboxesConvenios.add(checkBox);
+			yPos += 20;
+		}
+
 		/**
 		 * Os únicos botões dessa tela são Salvar e Cancelar.
 		 * Ambos fecham a tela quando clicados.
@@ -150,7 +167,7 @@ public class Tela_Cadastro_Medico extends JFrame {
                 }				
 			}
 		});
-		btnSalvar.setBounds(221, 227, 117, 25);
+		btnSalvar.setBounds(221, 400, 117, 25);
 		contentPane.add(btnSalvar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -159,7 +176,7 @@ public class Tela_Cadastro_Medico extends JFrame {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(345, 227, 117, 25);
+		btnCancelar.setBounds(345, 400, 117, 25);
 		contentPane.add(btnCancelar);
 		
 	}
@@ -207,8 +224,33 @@ public class Tela_Cadastro_Medico extends JFrame {
 		
 	    Medico medico = new Medico(nome, CPF, logradouro, numero, bairro, dtNascimento, "123456", especialidade);
 	    Pessoa pessoa = new Pessoa(nome, CPF, logradouro, numero, bairro, dtNascimento, "123456");
-        return salvar(medico, pessoa);
+
+		// Adicione a seguinte seção para lidar com os JCheckBox
+		for (JCheckBox checkBox : checkboxesConvenios) {
+			if (checkBox.isSelected()) {
+				String nomeConvenio = checkBox.getText();
+				Convenio convenioSelecionado = obterConvenioPorNome(nomeConvenio);
+
+				if (convenioSelecionado != null) {
+					medico.adicionarConvenio(convenioSelecionado);
+				}
+			}
+		}
+
+		return salvar(medico, pessoa);
 	}
+
+	// Método para obter o convênio a partir do nome
+
+	private Convenio obterConvenioPorNome(String nome) {
+		for (Convenio convenio : conveniosDisponiveis) {
+			if (convenio.getNome().equals(nome)) {
+				return convenio;
+			}
+		}
+		return null;
+	}
+
 	
 	public boolean salvar(Medico p, Pessoa pe) {
 		//Salvando em arquivo
