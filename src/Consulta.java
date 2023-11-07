@@ -1,7 +1,10 @@
-public class Consulta {
+import java.io.Serializable;
+import java.util.Date;
+
+public class Consulta implements Serializable{
     private Medico medico;
     private Paciente paciente;
-    private String dataHora;
+    private Date dataHora;
     private String batimentosCardiacos;
     private String pressao;
     private String temperatura;
@@ -10,11 +13,11 @@ public class Consulta {
     private String observacoes;
 
     // Construtor
-    public Consulta(Medico medico, Paciente paciente, String dataHora) {
-        this.medico = medico;
-        this.paciente = paciente;
-        this.dataHora = dataHora;
-    }
+    // public Consulta(Medico medico, Paciente paciente, Date dataHora) {
+    //     this.medico = medico;
+    //     this.paciente = paciente;
+    //     this.dataHora = dataHora;
+    // }
 
     public Medico getMedico() {
         return medico;
@@ -32,11 +35,11 @@ public class Consulta {
         this.paciente = paciente;
     }
 
-    public String getDataHora() {
+    public Date getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(String dataHora) {
+    public void setDataHora(Date dataHora) {
         this.dataHora = dataHora;
     }
 

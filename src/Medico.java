@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
@@ -47,8 +48,8 @@ public class Medico extends Pessoa{
         this.consultas.add(consulta);
 
         // Registrar a consulta na agenda do médico
-        String dataHoraConsulta = consulta.getDataHora();
-        agenda.removerHorario(dataHoraConsulta);
+        // String dataHoraConsulta = consulta.getDataHora();
+        // agenda.removerHorario(dataHoraConsulta);
 
     }
 
@@ -72,6 +73,35 @@ public class Medico extends Pessoa{
 
     public void setAgenda(Agenda agenda) {
         this.agenda = agenda;
+    }
+
+    public void setAgenda(String hora){
+        this.agenda.adicionarHorario(hora);
+    }
+
+    public boolean checkAgenda(String hr){
+        return this.getAgenda().confereHorario(hr);
+    }
+
+    public ArrayList<Consulta> getConsultas(){
+        return this.consultas;
+    }
+
+    public void setConsultas(ArrayList<Consulta> c){
+        this.consultas = c;
+    }
+
+    public void addConsulta(Consulta c){
+        this.consultas.add(c);
+    }
+
+    public boolean checkDisponibilidade(Date dt){
+        for(Consulta c : this.getConsultas()){
+            if(c.getDataHora().equals(dt)){
+                return false;
+            }
+        }
+        return true;
     }
     
 }

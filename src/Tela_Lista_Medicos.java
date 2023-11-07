@@ -95,13 +95,11 @@ public class Tela_Lista_Medicos extends JFrame {
 		
 		DefaultListModel<String> listModel = new DefaultListModel<>();
         DadosMedico medicos = new DadosMedico();
-         ArrayList<Medico> aux = medicos.getMedicos();
+        ArrayList<Medico> aux = medicos.getMedicos();
         
-        Iterator<Medico> auxVet = aux.iterator();
-
-        while(auxVet.hasNext()) {
-        	listModel.addElement(auxVet.next().getNome());
-		}
+        for(Medico a: aux){
+            listModel.addElement(a.getNome());
+        }
  
         //create the list
         listamedicos = new JList<>(listModel);
@@ -111,7 +109,7 @@ public class Tela_Lista_Medicos extends JFrame {
                 if (!e.getValueIsAdjusting()) {
                     final List<String> selectedValuesList = listamedicos.getSelectedValuesList();
                     selecionados = selectedValuesList;
-                    System.out.println(selectedValuesList);
+                    // System.out.println(selectedValuesList);
                 }
             }
         });
@@ -169,17 +167,16 @@ public class Tela_Lista_Medicos extends JFrame {
     	DadosMedico medicos = new DadosMedico();
         ArrayList<Medico> aux = medicos.getMedicos();
         
-        Iterator<Medico> auxVet = aux.iterator();
+        // Iterator<Medico> auxVet = aux.iterator();
     	
     	ArrayList<Medico> vetor = new ArrayList<Medico>();
         
         for(int i = 0; i < selecionados.size(); i++) {
-        	while(auxVet.hasNext()) {
-        		if(selecionados.get(i).compareTo(auxVet.next().getNome()) == 0) {
-        			vetor.add(auxVet.next());
-        		}
-        	}
-        	
+            for (Medico a: aux){
+                if(selecionados.get(i).compareTo(a.getNome()) == 0) {
+                    vetor.add(a);
+                }
+            }        	
 		}
         
         A.setMedico(vetor.get(0));

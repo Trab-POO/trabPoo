@@ -24,4 +24,12 @@ public class Agenda implements Serializable{
     public Map<String, Boolean> getAgenda() {
         return horariosDisponiveis;
     }
+
+    public boolean confereHorario(String hr){
+        if(this.getAgenda().containsKey(hr)){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

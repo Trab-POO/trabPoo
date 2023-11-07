@@ -38,6 +38,7 @@ public class Tela_Cadastro_Medico extends JFrame {
 	private JTextField txt_bairro;
 	private List<Convenio> conveniosDisponiveis;
 	private List<JCheckBox> checkboxesConvenios;
+	private List<JCheckBox> checkboxesAgenda;
 
 	/**
 	 * Launch the application.
@@ -61,7 +62,7 @@ public class Tela_Cadastro_Medico extends JFrame {
 	public Tela_Cadastro_Medico() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 486, 300);
+		setBounds(100, 100, 586, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -154,6 +155,39 @@ public class Tela_Cadastro_Medico extends JFrame {
 			yPos += 20;
 		}
 
+		yPos += 10;
+		int xPos = 221;
+
+		checkboxesAgenda = new ArrayList<>();
+		JLabel lblAgenda = new JLabel("Agenda:");
+		lblAgenda.setBounds(10, yPos, 150, 15);
+		contentPane.add(lblAgenda);
+
+		for (int i = 8; i < 18; i++) {
+
+			String x;
+			if(i < 10)
+				x = "0"+i;
+			else
+				x = String.valueOf(i);
+			
+			x += ":00h";
+
+			if(i != 12){
+				JCheckBox checkBox = new JCheckBox(x);
+				checkBox.setBounds(xPos, yPos, 150, 15);
+				contentPane.add(checkBox);
+				checkboxesAgenda.add(checkBox);
+				if(xPos == 380){
+					yPos += 20;
+					xPos = 221;
+				}
+				else 
+					xPos = 380;
+			}
+
+		}
+
 		/**
 		 * Os únicos botões dessa tela são Salvar e Cancelar.
 		 * Ambos fecham a tela quando clicados.
@@ -237,12 +271,21 @@ public class Tela_Cadastro_Medico extends JFrame {
 			}
 		}
 
+		for (JCheckBox checkBox : checkboxesAgenda) {
+			if (checkBox.isSelected()) {
+				String horarioAgenda = checkBox.getText();
+
+				medico.setAgenda(horarioAgenda);
+			}
+		}
+
 		return salvar(medico, pessoa);
 	}
 
 	// Método para obter o convênio a partir do nome
 
 	private Convenio obterConvenioPorNome(String nome) {
+		List<Convenio> conveniosDisponiveis = LeituraArquivoConvenios.obterConveniosDisponiveis();
 		for (Convenio convenio : conveniosDisponiveis) {
 			if (convenio.getNome().equals(nome)) {
 				return convenio;

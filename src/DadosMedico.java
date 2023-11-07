@@ -65,6 +65,19 @@ public class DadosMedico extends Dados{
 		return false;
 	}
 
+    public Medico getMedico(String CPF) {
+        Iterator<Medico> auxVet = medicos.iterator();
+
+        int aux = 0;
+		while(auxVet.hasNext()) {
+			if(CPF.equals(auxVet.next().getCpf())) {
+				return this.medicos.get(aux);
+			}
+            aux++;
+		}
+        return null;
+	}
+
     public boolean verificaMedico(Medico r){
         Iterator<Medico> aux = this.medicos.iterator();
 

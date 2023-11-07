@@ -11,6 +11,8 @@ public class LeituraArquivoConvenios {
             convenios = (List<Convenio>) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
+        } catch (Exception e){
+            System.out.println(e);
         }
 
         return convenios;

@@ -169,16 +169,16 @@ public class Tela_Lista_Pacientes extends JFrame {
     	DadosPaciente pacientes = new DadosPaciente();
         ArrayList<Paciente> aux = pacientes.getPacientes();
         
-        Iterator<Paciente> auxVet = aux.iterator();
+        // Iterator<Paciente> auxVet = aux.iterator();
     	
     	ArrayList<Paciente> vetor = new ArrayList<Paciente>();
         
         for(int i = 0; i < selecionados.size(); i++) {
-        	while(auxVet.hasNext()) {
-        		if(selecionados.get(i).compareTo(auxVet.next().getNome()) == 0) {
-        			vetor.add(auxVet.next());
-        		}
-        	}
+        	for (Paciente a: aux){
+                if(selecionados.get(i).compareTo(a.getNome()) == 0) {
+                    vetor.add(a);
+                }
+            } 
         	
 		}
         

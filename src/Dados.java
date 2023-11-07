@@ -22,6 +22,7 @@ public abstract class Dados {
 			return true;
 		}
 		catch(Exception e){
+			System.out.println(e.getMessage());
 			return false;
 		}
 	}

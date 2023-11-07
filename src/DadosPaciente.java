@@ -50,6 +50,19 @@ public class DadosPaciente extends Dados{
 		return false;
 	}
 
+    public Paciente getPaciente(String CPF) {
+        Iterator<Paciente> auxVet = pacientes.iterator();
+
+        int aux = 0;
+		while(auxVet.hasNext()) {
+			if(CPF.equals(auxVet.next().getCpf())) {
+				return this.pacientes.get(aux);
+			}
+            aux++;
+		}
+		return null;
+	}
+
     public boolean addPaciente(Paciente p){
         if(!verificaPaciente(p))
             this.pacientes.add(p);

@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Date;
-public class Paciente extends Pessoa implements Serializable{
+public class Paciente extends Pessoa{
     private ArrayList<Consulta> consultas;
 
     // Construtor
@@ -12,27 +12,35 @@ public class Paciente extends Pessoa implements Serializable{
     }
 
     // Métodos específicos de Paciente
-    public void agendarConsulta(Medico medico, String dataHora) {
-        // Verifica se a data e hora desejadas estão disponíveis na agenda do médico
-        Agenda agendaMedico = medico.getAgenda();
-        Map<String, Boolean> horariosDisponiveis = agendaMedico.getHorariosDisponiveis();
+    // public void agendarConsulta(Medico medico, String dataHora) {
+    //     // Verifica se a data e hora desejadas estão disponíveis na agenda do médico
+    //     Agenda agendaMedico = medico.getAgenda();
+    //     Map<String, Boolean> horariosDisponiveis = agendaMedico.getHorariosDisponiveis();
 
-        if (horariosDisponiveis.containsKey(dataHora) && horariosDisponiveis.get(dataHora)) {
-            // A data e hora estão disponíveis, então podemos agendar a consulta
-            Consulta consulta = new Consulta(medico, this, dataHora);
-            medico.registrarConsulta(consulta);
-            consultas.add(consulta);
-            agendaMedico.removerHorario(dataHora);
-            System.out.println("Consulta agendada com sucesso para " + dataHora);
-        } else {
-            // A data e hora não estão disponíveis
-            System.out.println("Desculpe, a data e hora selecionadas não estão disponíveis.");
-        }
-    }
+    //     if (horariosDisponiveis.containsKey(dataHora) && horariosDisponiveis.get(dataHora)) {
+    //         // A data e hora estão disponíveis, então podemos agendar a consulta
+    //         Consulta consulta = new Consulta(medico, this, dataHora);
+    //         medico.registrarConsulta(consulta);
+    //         consultas.add(consulta);
+    //         agendaMedico.removerHorario(dataHora);
+    //         System.out.println("Consulta agendada com sucesso para " + dataHora);
+    //     } else {
+    //         // A data e hora não estão disponíveis
+    //         System.out.println("Desculpe, a data e hora selecionadas não estão disponíveis.");
+    //     }
+    // }
 
 
     // Getter e Setter específico de Paciente
     public ArrayList<Consulta> getConsultas() {
         return consultas;
+    }
+
+    public void addVetorConsulta(Consulta a){
+        this.consultas.add(a);
+    }
+
+    public void setConsultas(ArrayList<Consulta> a){
+        this.consultas = a;
     }
 }
